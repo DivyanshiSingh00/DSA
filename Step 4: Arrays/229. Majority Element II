@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        Map<Integer, Integer> elecount = new HashMap<>();
+        for(int num: nums){
+            elecount.put(num, elecount.getOrDefault(num, 0) + 1);
+        }
+        List<Integer> majele = new ArrayList<>();
+        int thresh=nums.length/3;
+        for (Map.Entry<Integer, Integer> elepair : elecount.entrySet()) {
+            int ele = elepair.getKey();
+            int c = elepair.getValue();
+            if (c > thresh) {
+                majele.add(ele);
+            }
+        }
+        return majele;
+    }
+
+}

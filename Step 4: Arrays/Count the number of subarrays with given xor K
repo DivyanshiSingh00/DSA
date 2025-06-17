@@ -1,0 +1,22 @@
+public static int subarraysWithXorK(int []a, int k) {
+    int n = a.length, xr = 0, c = 0;
+    Map<Integer, Integer> hashmap = new HashMap<>(); //declaring the map.
+    hashmap.put(xr, 1); //setting the value of 0.
+
+    for (int i = 0; i < n; i++) {
+        xr = xr ^ a[i];
+        int x = xr ^ k;
+        if (hashmap.containsKey(x)) {
+            c += hashmap.get(x);
+        }
+
+            // Insert the prefix xor till index i
+            // into the map:
+        if (hashmap.containsKey(xr)) {
+            hashmap.put(xr, hashmap.get(xr) + 1);
+        } else {
+            hashmap.put(xr, 1);
+        }
+    }
+    return c;
+}
